@@ -1,49 +1,51 @@
-<header class="p-3 mb-3 border-bottom">
+<header class="navbar navbar-expand-lg shadow-sm">
   <div class="container">
-    <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
-      <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 link-body-emphasis text-decoration-none">
-        <svg class="bi me-2" width="40" height="32" role="img" aria-label="Bootstrap">
-          <use xlink:href="#bootstrap" />
-        </svg>
-      </a>
+    <a routerLink="/" class="navbar-brand d-flex align-items-center">
+      <i class="bi bi-book-half fs-4 me-2 text-primary"></i>
+      <span class="fw-bold">app9</span>
+    </a>
 
-      <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
-        <li><a href="#" class="nav-link px-2 link-secondary">Overview</a></li>
-        <li>
-          <a href="#" class="nav-link px-2 link-body-emphasis">Inventory</a>
-        </li>
-        <li>
-          <a href="#" class="nav-link px-2 link-body-emphasis">Customers</a>
-        </li>
-        <li>
-          <a href="#" class="nav-link px-2 link-body-emphasis">Products</a>
-        </li>
+    <div class="d-flex align-items-center mx-auto">
+      <ul class="nav nav-pills">
+        <li class="nav-item"><a routerLink="/home" routerLinkActive="active" class="nav-link px-3">Home</a></li>
+        <li class="nav-item"><a routerLink="/dashboard" routerLinkActive="active" class="nav-link px-3">Dashboard</a></li>
+        <li class="nav-item"><a routerLink="/explore" routerLinkActive="active" class="nav-link px-3">Explore</a></li>
+        <li class="nav-item"><a routerLink="/chatbot" routerLinkActive="active" class="nav-link px-3">Message</a></li>
       </ul>
+    </div>
 
-      <form class="col-12 col-lg-auto mb-3 mb-lg-0 me-lg-3" role="search">
-        <input type="search" class="form-control" placeholder="Search..." aria-label="Search" />
-      </form>
+    <div class="d-flex align-items-center">
+      <a href="#" class="me-3">
+        <i class="bi bi-search fs-5"></i>
+      </a>
+      <a href="#" class="me-3">
+        <i class="bi bi-bell fs-5"></i>
+      </a>
+      
+      <ng-container *ngIf="!(authService.currentUser$ | async); else userLoggedIn">
+        <a routerLink="/auth/login" class="btn btn-outline-primary me-2">Sign In</a>
+        <a routerLink="/auth/register" class="btn btn-primary">Create Account</a>
+      </ng-container>
 
-      <div class="dropdown text-end">
-        <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown"
-          aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle" />
-        </a>
-        <ul class="dropdown-menu text-small">
-          <li><a class="dropdown-item" href="#">New project...</a></li>
-          <li><a class="dropdown-item" href="#">Settings</a></li>
-          <li><a class="dropdown-item" href="#">Profile</a></li>
-          <li>
-            <hr class="dropdown-divider" />
-          </li>
-          <li><a class="dropdown-item" href="#">Sign out</a></li>
-        </ul>
-      </div>
+      <ng-template #userLoggedIn>
+        <div class="dropdown">
+          <a href="#" class="d-flex align-items-center text-decoration-none dropdown-toggle"
+            data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="/assets/images/default-avatar.jpg" alt="User avatar" class="avatar me-2" width="32" height="32">
+          </a>
+          <ul class="dropdown-menu dropdown-menu-end shadow">
+            <li><a class="dropdown-item" routerLink="/dashboard">Dashboard</a></li>
+            <li><a class="dropdown-item" routerLink="/dashboard/profile">Profile</a></li>
+            <li><a class="dropdown-item" routerLink="/dashboard/saved">Saved Content</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#" (click)="logout($event)">Sign out</a></li>
+          </ul>
+        </div>
+      </ng-template>
     </div>
   </div>
 </header>
 
 <main>
-  <i class="bi bi-0-circle"></i>
   <router-outlet />
 </main>

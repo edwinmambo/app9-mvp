@@ -1,0 +1,103 @@
+<div class="container-fluid home-container">
+  <div *ngIf="isLoading" class="text-center py-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  
+  <div *ngIf="!isLoading" class="row">
+    <!-- Hero Section -->
+    <div class="col-12 mb-4">
+      <div class="card bg-primary text-white shadow">
+        <div class="card-body p-5 text-center">
+          <h1 class="display-4 mb-3">Welcome to Your Knowledge Journey</h1>
+          <p class="lead mb-4">Discover insights, learn from curated content, and connect with experts</p>
+          
+          <div *ngIf="!isAuthenticated" class="mt-4">
+            <a routerLink="/auth/register" class="btn btn-light btn-lg me-2">Get Started</a>
+            <a routerLink="/auth/login" class="btn btn-outline-light btn-lg">Sign In</a>
+          </div>
+          
+          <div *ngIf="isAuthenticated" class="mt-4">
+            <a routerLink="/explore" class="btn btn-light btn-lg me-2">Explore Content</a>
+            <a routerLink="/chatbot" class="btn btn-outline-light btn-lg">Chat with AI</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Daily Quote -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow h-100">
+        <div class="card-header bg-transparent">
+          <h5 class="mb-0">
+            <i class="bi bi-quote me-2"></i>
+            Daily Quote
+          </h5>
+        </div>
+        <div class="card-body d-flex align-items-center">
+          <blockquote class="blockquote mb-0">
+            <p>{{ dailyContent.quote }}</p>
+          </blockquote>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Daily Tip -->
+    <div class="col-md-6 mb-4">
+      <div class="card shadow h-100">
+        <div class="card-header bg-transparent">
+          <h5 class="mb-0">
+            <i class="bi bi-lightbulb me-2"></i>
+            Daily Tip
+          </h5>
+        </div>
+        <div class="card-body d-flex align-items-center">
+          <p class="lead mb-0">{{ dailyContent.daily_tip }}</p>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Recommendations -->
+    <div class="col-12 mb-4">
+      <h3 class="mb-3">Recommended For You</h3>
+      <div class="row row-cols-1 row-cols-md-2 g-4">
+        <div *ngFor="let item of dailyContent.recommendations" class="col">
+          <div class="card h-100 shadow-sm">
+            <div class="card-body">
+              <span class="badge bg-primary mb-2">{{ item.type }}</span>
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">{{ item.description }}</p>
+            </div>
+            <div class="card-footer bg-transparent">
+              <a href="#" class="btn btn-outline-primary">Learn More</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Featured Content -->
+    <div class="col-12 mb-4">
+      <h3 class="mb-3">Featured Content</h3>
+      <div class="row row-cols-1 row-cols-md-3 g-4">
+        <div *ngFor="let item of featuredContent" class="col">
+          <div class="card h-100 shadow-sm">
+            <div *ngIf="item.imageUrl" class="card-img-top-container">
+              <img [src]="item.imageUrl" class="card-img-top" [alt]="item.title">
+            </div>
+            <div class="card-body">
+              <span class="badge bg-primary mb-2">{{ item.type }}</span>
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">{{ item.description }}</p>
+            </div>
+            <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+              <small class="text-muted">{{ item.createdAt | date }}</small>
+              <a [routerLink]="['/content', item.id]" class="btn btn-sm btn-outline-primary">View</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

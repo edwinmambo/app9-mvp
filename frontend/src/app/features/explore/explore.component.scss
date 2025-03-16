@@ -1,0 +1,43 @@
+.explore-container {
+  padding: 20px 0;
+}
+
+.filters-container {
+  padding: 15px 0;
+}
+
+.filter-group {
+  margin-bottom: 10px;
+}
+
+.hover-effect {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+  &:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1) !important;
+  }
+}
+
+.clickable-tag {
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+
+  &:hover {
+    background-color: #e9ecef !important;
+  }
+}
+
+.card-title {
+  font-weight: 600;
+  margin-bottom: 12px;
+}
+
+.card-text {
+  color: #6c757d;
+  margin-bottom: 15px;
+}
+
+.badge {
+  font-weight: 500;
+}

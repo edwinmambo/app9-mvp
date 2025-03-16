@@ -1,0 +1,134 @@
+<div class="container-fluid explore-container">
+  <div class="row mb-4">
+    <div class="col-12">
+      <div class="card shadow">
+        <div class="card-body">
+          <h2 class="card-title mb-4">
+            <i class="bi bi-compass-fill me-2"></i>
+            Explore Knowledge
+          </h2>
+
+          <form [formGroup]="searchForm">
+            <div class="input-group mb-3">
+              <span class="input-group-text">
+                <i class="bi bi-search"></i>
+              </span>
+              <input
+                type="text"
+                class="form-control"
+                placeholder="Search for knowledge resources..."
+                formControlName="searchQuery"
+              >
+            </div>
+          </form>
+
+          <div class="filters-container">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h6 class="mb-0">Filters</h6>
+              <button
+                *ngIf="getActiveFilterCount() > 0"
+                class="btn btn-sm btn-outline-secondary"
+                (click)="clearFilters()"
+              >
+                <i class="bi bi-x-circle me-1"></i>
+                Clear filters ({{ getActiveFilterCount() }})
+              </button>
+            </div>
+
+            <div class="filter-group">
+              <h6>Content Type</h6>
+              <div class="btn-group flex-wrap">
+                <button
+                  *ngFor="let type of contentTypes"
+                  class="btn btn-sm mb-2 me-2"
+                  [ngClass]="isFilterActive('type', type) ? 'btn-primary' : 'btn-outline-primary'"
+                  (click)="toggleFilter('type', type)"
+                >
+                  {{ type }}
+                </button>
+              </div>
+            </div>
+
+            <div class="filter-group mt-3">
+              <h6>Topics</h6>
+              <div class="btn-group flex-wrap">
+                <button
+                  *ngFor="let topic of topics"
+                  class="btn btn-sm mb-2 me-2"
+                  [ngClass]="isFilterActive('topic', topic) ? 'btn-primary' : 'btn-outline-primary'"
+                  (click)="toggleFilter('topic', topic)"
+                >
+                  {{ topic }}
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mb-3">
+    <div class="col-12">
+      <div class="d-flex justify-content-between align-items-center">
+        <h5 class="mb-0" *ngIf="!isLoading && searchResults.length > 0">
+          <span class="text-primary">{{ totalResults }}</span> results found
+        </h5>
+        <div>
+          <!-- Placeholder for future sorting options -->
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-12">
+      <div *ngIf="isLoading" class="text-center py-5">
+        <div class="spinner-border text-primary" role="status">
+          <span class="visually-hidden">Loading...</span>
+        </div>
+      </div>
+
+      <div *ngIf="!isLoading && searchResults.length === 0" class="text-center py-5">
+        <i class="bi bi-search display-1 text-muted"></i>
+        <h3 class="mt-3">No results found</h3>
+        <p class="text-muted">Try adjusting your search or filters</p>
+      </div>
+
+      <div *ngIf="!isLoading && searchResults.length > 0" class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        <div *ngFor="let item of searchResults" class="col">
+          <div class="card h-100 shadow-sm hover-effect">
+            <div class="card-body">
+              <div class="d-flex justify-content-between mb-2">
+                <span class="badge bg-primary clickable-tag" (click)="toggleFilter('type', item.type)">{{ item.type }}</span>
+                <span *ngIf="item.featured" class="badge bg-warning text-dark">
+                  <i class="bi bi-star-fill me-1"></i> Featured
+                </span>
+              </div>
+              <h5 class="card-title">{{ item.title }}</h5>
+              <p class="card-text">{{ item.description || (item.content | slice:0:150) }}...</p>
+
+              <div class="d-flex flex-wrap">
+                <span
+                  *ngFor="let tag of item.tags"
+                  class="badge bg-light text-dark me-1 mb-1 clickable-tag"
+                  (click)="toggleFilter('topic', tag)"
+                >
+                  {{ tag }}
+                </span>
+              </div>
+            </div>
+            <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+              <small class="text-muted">
+                {{ item.createdAt | date }}
+              </small>
+              <a [routerLink]="['/content', item.id]" class="btn btn-sm btn-outline-primary">
+                View Details
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

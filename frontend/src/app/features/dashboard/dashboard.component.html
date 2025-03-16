@@ -1,0 +1,356 @@
+<div class="dashboard-container">
+  <div *ngIf="isLoading" class="loading-container">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Loading...</span>
+    </div>
+  </div>
+  
+  <div *ngIf="!isLoading" class="dashboard-content">
+    <div class="row g-4">
+    <!-- Activity Section -->
+    <div class="col-md-4">
+      <div class="card h-100">
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="m-0">Activity</h5>
+            <div class="dropdown">
+              <button class="btn btn-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                <i class="bi bi-calendar3 me-1"></i> Last 7 days
+              </button>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li><a class="dropdown-item" href="#">Last 7 days</a></li>
+                <li><a class="dropdown-item" href="#">Last 30 days</a></li>
+                <li><a class="dropdown-item" href="#">Last 90 days</a></li>
+              </ul>
+            </div>
+          </div>
+          
+          <div class="d-flex align-items-center mb-4">
+            <h2 class="display-4 fw-bold mb-0">24.9</h2>
+            <div class="ms-3">
+              <div class="badge bg-success">+2.3</div>
+              <div class="text-muted small mt-1">Hours spent</div>
+            </div>
+          </div>
+          
+          <div class="activity-chart position-relative mb-3">
+            <div class="position-absolute top-0 start-0 small text-muted">4.2 hours</div>
+            <div class="d-flex justify-content-between" style="height: 120px;">
+              <div class="activity-bar" style="height: 40%; background-color: var(--primary-light);"></div>
+              <div class="activity-bar" style="height: 30%; background-color: var(--primary-light);"></div>
+              <div class="activity-bar" style="height: 50%; background-color: var(--primary-light);"></div>
+              <div class="activity-bar" style="height: 90%; background-color: var(--primary);"></div>
+              <div class="activity-bar" style="height: 60%; background-color: var(--primary-light);"></div>
+              <div class="activity-bar" style="height: 70%; background-color: var(--primary-light);"></div>
+              <div class="activity-bar" style="height: 45%; background-color: var(--primary-light);"></div>
+            </div>
+            <div class="d-flex justify-content-between mt-2">
+              <div class="day-label">Mon</div>
+              <div class="day-label">Tue</div>
+              <div class="day-label">Wed</div>
+              <div class="day-label">Thu</div>
+              <div class="day-label">Fri</div>
+              <div class="day-label">Sat</div>
+              <div class="day-label">Sun</div>
+            </div>
+          </div>
+          
+          <div class="mt-4">
+            <h6 class="mb-3">By platform</h6>
+            <div class="platform-item d-flex align-items-center mb-2">
+              <div class="platform-icon me-3">
+                <i class="bi bi-book-half text-primary"></i>
+              </div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <div class="fw-medium">Knowledge Hub</div>
+                    <div class="text-muted small">8 articles</div>
+                  </div>
+                  <div class="text-end">
+                    <div class="fw-medium">12.5 h</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="platform-item d-flex align-items-center mb-2">
+              <div class="platform-icon me-3">
+                <i class="bi bi-chat-dots-fill text-primary"></i>
+              </div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <div class="fw-medium">AI Chat</div>
+                    <div class="text-muted small">5 conversations</div>
+                  </div>
+                  <div class="text-end">
+                    <div class="fw-medium">6.8 h</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="platform-item d-flex align-items-center mb-2">
+              <div class="platform-icon me-3">
+                <i class="bi bi-journal-text text-primary"></i>
+              </div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <div class="fw-medium">Resource Library</div>
+                    <div class="text-muted small">3 resources</div>
+                  </div>
+                  <div class="text-end">
+                    <div class="fw-medium">4.2 h</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div class="platform-item d-flex align-items-center">
+              <div class="platform-icon me-3">
+                <i class="bi bi-people-fill text-primary"></i>
+              </div>
+              <div class="flex-grow-1">
+                <div class="d-flex justify-content-between">
+                  <div>
+                    <div class="fw-medium">Community Forum</div>
+                    <div class="text-muted small">2 discussions</div>
+                  </div>
+                  <div class="text-end">
+                    <div class="fw-medium">2.5 h</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Main Content Area -->
+    <div class="col-md-8">
+      <!-- Progress Statistics -->
+      <div class="card mb-4">
+        <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Progress statistics</h5>
+          <div class="dropdown">
+            <button class="btn btn-sm btn-light dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+              This month
+            </button>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" href="#">This week</a></li>
+              <li><a class="dropdown-item" href="#">This month</a></li>
+              <li><a class="dropdown-item" href="#">This year</a></li>
+            </ul>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <div class="row align-items-center">
+            <div class="col-md-6">
+              <div class="d-flex align-items-center mb-3">
+                <h2 class="display-4 fw-bold mb-0">64%</h2>
+                <div class="ms-3 badge bg-success">+12%</div>
+              </div>
+              <p class="text-muted mb-3">Total activity completion</p>
+              <div class="progress mb-2" style="height: 10px;">
+                <div class="progress-bar" role="progressbar" style="width: 64%" aria-valuenow="64" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="d-flex justify-content-between mt-2">
+                <small class="text-muted">Previous: 52%</small>
+                <small class="text-muted">Goal: 75%</small>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="row text-center mt-4 mt-md-0">
+                <div class="col-4">
+                  <div class="stat-circle bg-light-purple">
+                    <i class="bi bi-hourglass-split"></i>
+                  </div>
+                  <h4 class="stat-value mt-2">8</h4>
+                  <p class="stat-label">In progress</p>
+                </div>
+                <div class="col-4">
+                  <div class="stat-circle bg-light-green">
+                    <i class="bi bi-check-circle"></i>
+                  </div>
+                  <h4 class="stat-value mt-2">12</h4>
+                  <p class="stat-label">Completed</p>
+                </div>
+                <div class="col-4">
+                  <div class="stat-circle bg-light-orange">
+                    <i class="bi bi-calendar-event"></i>
+                  </div>
+                  <h4 class="stat-value mt-2">14</h4>
+                  <p class="stat-label">Upcoming</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- My Schedule -->
+      <div class="card mb-4">
+        <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">My schedule</h5>
+          <div>
+            <button class="btn btn-sm btn-outline-primary rounded-pill me-2"><i class="bi bi-chevron-left"></i></button>
+            <span class="badge rounded-pill bg-primary text-white me-2">Today</span>
+            <button class="btn btn-sm btn-outline-primary rounded-pill"><i class="bi bi-chevron-right"></i></button>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <div class="row g-4">
+            <!-- Morning Class -->
+            <div class="col-md-4">
+              <div class="class-card p-3 rounded-4 border shadow-sm">
+                <div class="d-flex justify-content-between mb-2">
+                  <div class="text-muted small"><i class="bi bi-clock me-1"></i>10:30 — 12:00</div>
+                </div>
+                <h5 class="mb-1">Technical Writing Fundamentals</h5>
+                <div class="badge bg-light text-dark mb-3">Beginner</div>
+                <div class="d-flex align-items-center">
+                  <div class="avatar-circle me-2 bg-primary text-white">KW</div>
+                  <div>
+                    <div class="fw-medium">Kristin Watson</div>
+                    <div class="text-muted small">Mentor</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Current Class -->
+            <div class="col-md-4">
+              <div class="class-card p-3 rounded-4 border-0 shadow bg-primary text-white">
+                <div class="d-flex justify-content-between mb-2">
+                  <div class="small"><i class="bi bi-clock me-1"></i>11:00 — 14:00</div>
+                  <div class="badge bg-warning text-dark">Now</div>
+                </div>
+                <h5 class="mb-1">English punctuation made easy</h5>
+                <div class="badge bg-light text-dark mb-3">Advanced</div>
+                <div class="d-flex align-items-center">
+                  <div class="avatar-circle me-2 bg-white text-primary">CF</div>
+                  <div>
+                    <div class="fw-medium">Cody Fisher</div>
+                    <div class="small">Mentor</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <!-- Afternoon Class -->
+            <div class="col-md-4">
+              <div class="class-card p-3 rounded-4 border shadow-sm">
+                <div class="d-flex justify-content-between mb-2">
+                  <div class="text-muted small"><i class="bi bi-clock me-1"></i>16:00 — 17:00</div>
+                </div>
+                <h5 class="mb-1">Technical Documentation Workshop</h5>
+                <div class="badge bg-light text-dark mb-3">Beginner</div>
+                <div class="d-flex align-items-center">
+                  <div class="avatar-circle me-2 bg-primary text-white">JJ</div>
+                  <div>
+                    <div class="fw-medium">Jacob Jones</div>
+                    <div class="text-muted small">Mentor</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Current Course Information -->
+      <div class="card mb-4">
+        <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Current course</h5>
+          <div>
+            <button class="btn btn-sm btn-outline-primary">View all courses</button>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <div class="d-flex justify-content-between mb-3">
+            <div>
+              <span class="badge bg-primary mb-2">Group course</span>
+              <span class="badge bg-light text-dark ms-2">Advanced</span>
+            </div>
+            <div>
+              <span class="badge bg-success"><i class="bi bi-play-fill me-1"></i>In progress</span>
+            </div>
+          </div>
+          
+          <h4 class="mb-2">English punctuation made easy</h4>
+          <p class="text-muted">Punctuation — learn the basics without the pain. People will never laugh at your punctuation again. You do not require any materials or software.</p>
+          
+          <div class="row mt-4">
+            <div class="col-md-6">
+              <h6 class="mb-3">Participants</h6>
+              <div class="d-flex">
+                <div class="avatar-circle me-2 bg-primary text-white">JD</div>
+                <div class="avatar-circle me-2 bg-success text-white">KW</div>
+                <div class="avatar-circle me-2 bg-warning text-dark">MR</div>
+                <div class="avatar-circle me-2 bg-danger text-white">AS</div>
+                <div class="avatar-circle me-2 bg-secondary text-white">+3</div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <h6 class="mb-3">Course progress</h6>
+              <div class="progress mb-2" style="height: 10px;">
+                <div class="progress-bar bg-success" role="progressbar" style="width: 75%" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="d-flex justify-content-between">
+                <small class="text-muted">6/8 lessons completed</small>
+                <small class="text-muted">75%</small>
+              </div>
+            </div>
+          </div>
+          
+          <div class="mt-4 d-flex justify-content-between align-items-center">
+            <div>
+              <span class="text-muted"><i class="bi bi-clock me-1"></i>Next lesson: Tomorrow, 11:00 AM</span>
+            </div>
+            <button class="btn btn-primary px-4 py-2">Continue learning</button>
+          </div>
+        </div>
+      </div>
+      <!-- Recommended Content -->
+      <div class="card mb-4">
+        <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+          <h5 class="mb-0">Recommended for you</h5>
+          <div>
+            <button class="btn btn-sm btn-outline-primary">View all</button>
+          </div>
+        </div>
+        <div class="card-body p-4">
+          <div class="row g-4">
+            <div class="col-md-4" *ngFor="let item of recommendations">
+              <div class="recommendation-card h-100 border shadow-sm rounded-4 overflow-hidden">
+                <div class="bg-light p-3 text-center" style="height: 120px;">
+                  <i class="bi" [ngClass]="{
+                    'bi-journal-text fs-1 text-primary': item.type === 'Article',
+                    'bi-play-circle fs-1 text-danger': item.type === 'Video',
+                    'bi-book fs-1 text-success': item.type === 'Guide'
+                  }"></i>
+                </div>
+                <div class="p-3">
+                  <div class="d-flex justify-content-between mb-2">
+                    <span class="badge" [ngClass]="{
+                      'bg-primary': item.type === 'Article',
+                      'bg-danger': item.type === 'Video',
+                      'bg-success': item.type === 'Guide'
+                    }">{{ item.type }}</span>
+                    <button class="btn btn-sm btn-link p-0"><i class="bi bi-bookmark"></i></button>
+                  </div>
+                  <h6 class="mb-2">{{ item.title }}</h6>
+                  <p class="text-muted small mb-3">{{ item.description }}</p>
+                  <button class="btn btn-sm btn-outline-primary w-100">View content</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

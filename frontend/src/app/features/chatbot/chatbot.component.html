@@ -1,0 +1,65 @@
+<div class="container-fluid chatbot-container">
+  <div class="row">
+    <div class="col-md-8 mx-auto">
+      <div class="card shadow">
+        <div class="card-header bg-primary">
+          <h5 class="mb-0 text-white">
+            <i class="bi bi-chat-dots-fill me-2"></i>
+            Message Assistant
+          </h5>
+        </div>
+        
+        <div class="chat-messages" #scrollContainer>
+          <div *ngFor="let message of messages" 
+               class="message" 
+               [ngClass]="{'user-message': message.sender === 'user', 'ai-message': message.sender === 'ai'}">
+            <div class="message-content">
+              <div class="message-avatar">
+                <i *ngIf="message.sender === 'user'" class="bi bi-person-circle"></i>
+                <i *ngIf="message.sender === 'ai'" class="bi bi-robot"></i>
+              </div>
+              <div class="message-bubble">
+                <div class="message-text">{{ message.content }}</div>
+                <div class="message-time">{{ message.timestamp | date:'short' }}</div>
+              </div>
+            </div>
+          </div>
+          
+          <div *ngIf="isLoading" class="message ai-message">
+            <div class="message-content">
+              <div class="message-avatar">
+                <i class="bi bi-robot"></i>
+              </div>
+              <div class="typing-indicator">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <div class="card-footer">
+          <div class="input-group">
+            <input 
+              type="text" 
+              class="form-control" 
+              placeholder="Type your message..." 
+              [(ngModel)]="newMessage"
+              (keyup.enter)="sendMessage()"
+              [disabled]="isLoading"
+            >
+            <button 
+              class="btn btn-primary" 
+              type="button"
+              [disabled]="isLoading || !newMessage.trim()" 
+              (click)="sendMessage()"
+            >
+              <i class="bi bi-send-fill"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

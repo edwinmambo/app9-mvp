@@ -12,3 +12,49 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model User {
+  id            String         @id @default(uuid())
+  email         String         @unique
+  name          String?
+  password      String
+  preferences   UserPreference?
+  savedContent  SavedContent[]
+  contents      Content[]      @relation("UserContent")
+  createdAt     DateTime       @default(now())
+  updatedAt     DateTime       @updatedAt
+}
+
+model UserPreference {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id])
+  preferredTopics String[] @default([])
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model Content {
+  id          String         @id @default(uuid())
+  title       String
+  description String?
+  content     String
+  tags        String[]
+  featured    Boolean        @default(false)
+  type        String?
+  authorId    String?
+  author      User?          @relation("UserContent", fields: [authorId], references: [id])
+  savedBy     SavedContent[]
+  createdAt   DateTime       @default(now())
+  updatedAt   DateTime       @updatedAt
+}
+
+model SavedContent {
+  userId      String
+  contentId   String
+  user        User      @relation(fields: [userId], references: [id])
+  content     Content   @relation(fields: [contentId], references: [id])
+  createdAt   DateTime  @default(now())
+
+  @@id([userId, contentId])
+}
